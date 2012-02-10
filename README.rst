@@ -13,10 +13,12 @@ Dependencies
 Installation
 ============
 
-# Need to install ecooper's fork of slumber, nap_,first, otherwise
-# pip will use the one found in PyPI
-pip install -e git+git://github.com/ecooper/nap.git
-pip install -e git+git://github.com/foodgenius/python-foodgenius.git
+::
+
+    # Need to install ecooper's fork of slumber, nap_,first, otherwise
+    # pip will use the one found in PyPI
+    pip install -e git+git://github.com/ecooper/nap.git
+    pip install -e git+git://github.com/foodgenius/python-foodgenius.git
 
 .. _nap: http://github.com/ecooper/nap/
 
@@ -28,7 +30,7 @@ Example
     import foodgenius
 
     # Create the API wrapper object using your OAuth credentials
-    api = foodgenius.FoodGenius(authentication={'key': 'your_oauth_key',
+    api = foodgenius.Foodgenius(authentication={'key': 'your_oauth_key',
         'secret': 'your_oauth_secret'})
 
 

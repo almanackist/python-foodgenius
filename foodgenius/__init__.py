@@ -4,7 +4,11 @@ import oauth2
 API_DOMAIN = 'getfoodgenius.com'
 API_VERSION = '0.1'
 
-class OAuthResource(nap.Resource):
+class FoodGeniusResource(nap.Resource):
+
+    class Meta:
+        http = oauth2.Client
+
     def _get_client(self):
         consumer = oauth2.Consumer(self._meta.authentication.get('key'),
             self._meta.authentication.get('secret'))
@@ -18,11 +22,10 @@ class OAuthResource(nap.Resource):
             # to play nice with oauth2
             kwargs["body"] = ""
 
-        return super(OAuthResource, self).request(method, **kwargs)
+        return super(FoodGeniusResource, self).request(method, **kwargs)
 
-def Api(authentication, domain=API_DOMAIN, version=API_VERSION):
-    return nap.Api(domain=domain, 
-        resource_class=OAuthResource,
-        authentication=authentication, 
-        uri='/api/' + version + '/',
-        http=oauth2.Client)
+def Foodgenius(authentication, domain=API_DOMAIN, version=API_VERSION):
+    return nap.Api(domain=domain,
+        resource_class=FoodGeniusResource,
+        authentication=authentication,
+        uri="/api/%s/" % API_VERSION)
